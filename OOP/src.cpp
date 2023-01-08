@@ -3,11 +3,31 @@
 using namespace std;
 
 class Employee {
-public:
+private:
 	string name;
 	string company;
 	int age;
-
+public:
+	// Setters
+	void setName(string sName) {
+		name = sName;
+	}
+	void setCompany(string sCompany) {
+		company = sCompany;
+	}
+	void setAge(int sAge) {
+		age = sAge;
+	}
+	// Getters
+	string getName() {
+		return name;
+	}
+	string getCompany() {
+		return company;
+	}
+	int getAge() {
+		return age;
+	}
 	void introduceYourself() {
 		cout << "Name - " << name << endl;
 		cout << "Company - " << company << endl;
@@ -30,6 +50,9 @@ int main() {
 
 	Employee employee2 = Employee("Romanet", "Google", 33);
 	employee2.introduceYourself();
+
+	employee1.setAge(34);
+	cout << employee1.getName() << " is " << employee1.getAge() << " years old." << endl;
 
 	return 0;
 }
