@@ -2,7 +2,11 @@
 
 using namespace std;
 
-class Employee {
+class AbstractEmployee {
+	virtual void askForPromotion() = 0;
+};
+
+class Employee: AbstractEmployee {
 private:
 	string name;
 	string company;
@@ -28,6 +32,7 @@ public:
 	int getAge() {
 		return age;
 	}
+
 	void introduceYourself() {
 		cout << "Name - " << name << endl;
 		cout << "Company - " << company << endl;
@@ -38,21 +43,22 @@ public:
 		company = cCompany;
 		age = cAge;
 	}
+	void askForPromotion() {
+		if (age > 30) {
+			cout << name << " got promoted!" << endl;
+		} else {
+			cout << name << ", sorry NO promotion for you" << endl;
+		}
+	}
 };
 
 int main() {
 
-	Employee employee1 = Employee("Daniel", "Apple", 30);
-	//employee1.name = "Daniel";
-	//employee1.company = "Apple";
-	//employee1.age = 30;
-	employee1.introduceYourself();
-
+	Employee employee1 = Employee("Daniel", "Apple", 20);
 	Employee employee2 = Employee("Romanet", "Google", 33);
-	employee2.introduceYourself();
 
-	employee1.setAge(34);
-	cout << employee1.getName() << " is " << employee1.getAge() << " years old." << endl;
+	employee1.askForPromotion();
+	employee2.askForPromotion();
 
 	return 0;
 }
