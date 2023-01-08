@@ -8,9 +8,10 @@ class AbstractEmployee {
 
 class Employee: AbstractEmployee {
 private:
-	string name;
 	string company;
 	int age;
+protected:
+	string name;
 public:
 	// Setters
 	void setName(string sName) {
@@ -52,13 +53,37 @@ public:
 	}
 };
 
+class Developer : public Employee {
+public:
+	string favProgrammingLanguage;
+	Developer(string cName, string cCompany, int cAge, string cFavProgrammingLanguage)
+		: Employee(cName, cCompany, cAge) {
+		favProgrammingLanguage = cFavProgrammingLanguage;
+	}
+	void fixBug() {
+		cout << name << " fixed bug using " << favProgrammingLanguage << endl;
+	}
+};
+
+class Teacher : public Employee {
+public:
+	string subject;
+	void prepareLesson() {
+		cout << name << " is preparing " << subject << " lesson" << endl;
+	}
+	Teacher(string cName, string cCompany, int cAge, string cSubject)
+		: Employee(cName, cCompany, cAge) {
+		subject = cSubject;
+	}
+};
+
 int main() {
 
-	Employee employee1 = Employee("Daniel", "Apple", 20);
-	Employee employee2 = Employee("Romanet", "Google", 33);
-
-	employee1.askForPromotion();
-	employee2.askForPromotion();
+	Developer d = Developer("Daniel", "Apple", 31, "JavaScript");
+	d.fixBug();
+	d.askForPromotion();
+	Teacher t = Teacher("Romanet", "School", 27, "History");
+	t.prepareLesson();
 
 	return 0;
 }
