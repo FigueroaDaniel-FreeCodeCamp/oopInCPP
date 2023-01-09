@@ -51,6 +51,9 @@ public:
 			cout << name << ", sorry NO promotion for you" << endl;
 		}
 	}
+	virtual void work() { // VERY IMPORTANT
+		cout << name << " is checking email, task backlog, performing tasks..." << endl;
+	}
 };
 
 class Developer : public Employee {
@@ -62,6 +65,9 @@ public:
 	}
 	void fixBug() {
 		cout << name << " fixed bug using " << favProgrammingLanguage << endl;
+	}
+	void work() {
+		cout << name << " is writting " << favProgrammingLanguage << " code" << endl;
 	}
 };
 
@@ -75,15 +81,23 @@ public:
 		: Employee(cName, cCompany, cAge) {
 		subject = cSubject;
 	}
+	void work() {
+		cout << name << " is teaching " << subject << endl;
+	}
 };
 
-int main() {
-
+int main() { // The most common use polimorphisim is when a 
+			// parent class reference is used to refer to a child class object
 	Developer d = Developer("Daniel", "Apple", 31, "JavaScript");
-	d.fixBug();
-	d.askForPromotion();
 	Teacher t = Teacher("Romanet", "School", 27, "History");
-	t.prepareLesson();
+	/*d.work();
+	t.work();*/
+
+	Employee* e1 = &d;
+	Employee* e2 = &t;
+
+	e1->work();
+	e2->work();
 
 	return 0;
 }
